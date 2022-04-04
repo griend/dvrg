@@ -25,3 +25,31 @@
     owner: root
     group: root
     mode: 0660
+
+- name: users ansible | install ansible.service
+  copy:
+    src: systemd/ansible.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: 0660
+
+- name: users ansible | install ansible.timer
+  copy:
+    src: systemd/ansible.timer
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: 0660
+
+- name: users ansible | enable ansible.service
+  systemd:
+    name: ansible.service
+    enabled: yes
+    state: stopped
+
+- name: users ansible | enable ansible.timer
+  systemd:
+    name: ansible.timer
+    enabled: yes
+    state: started

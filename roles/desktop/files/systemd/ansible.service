@@ -1,0 +1,12 @@
+[Unit]
+Description=Ansible-pull service
+Wants=ansible.timer
+
+[Service]
+Type=oneshot
+User=ansible
+Group=ansible
+ExecStart=/usr/bin/ansible-pull --only-if-changed --url https://github.com/griend/dvrg.git
+
+[Install]
+WantedBy=multi-user.target

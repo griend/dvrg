@@ -2,9 +2,5 @@
 - name: software | python | install packages
   apt:
     name:
-    - python3
-    - python3-pip
-    - python3-psutil
-    - python3-venv
-    - python3-wheel
+    
   when: ansible_distribution == "Debian"
