@@ -1,39 +1,34 @@
 ---
-# Update repository
 - hosts: localhost
   connection: local
   tags: always
   become: true
+
+  # Update repository
   pre_tasks:
-    - name: pre-run | update package cache
+    - name: pre-tasks | update package cache
       tags: always
-      apt: update_cache=yes
-      changed_when: False
+      apt:
+        update_cache: yes
+      changed_when: false
       when: ansible_distribution == "Debian"
 
-# Main run
-- hosts: localhost
-  connection: local
-  become: true
+  # Main
   roles:
-  - desktop
-  
-# Clean/Purge repository
-- hosts: localhost
-  connection: local
-  become: true
-  tasks:
-  - name: cleanup package cache
-    tags: always
-    apt:
-      autoclean: yes
-    changed_when: false
-    when: ansible_distribution == "Debian"
+    - desktop
 
-  - name: autoremove orphan packages
-    tags: always
-    apt:
-      autoremove: yes
-      purge: yes
-    when: ansible_distribution == "Debian"
-  
+  # Clean/Purge repository
+  post_tasks:
+    - name: post-tasks | cleanup package cache
+      tags: always
+      apt:
+        autoclean: yes
+      changed_when: false
+      when: ansible_distribution == "Debian"
+
+    - name: post-tasks | autoremove orphan packages
+      tags: always
+      apt:
+        autoremove: yes
+        purge: yes
+      when: ansible_distribution == "Debian"

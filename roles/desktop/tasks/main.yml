@@ -1,8 +1,8 @@
 ---
-
 - include_tasks: software/google_chrome.yml
 - include_tasks: software/python.yml
 - include_tasks: software/vscode.yml
 
 - include_tasks: gnome/background.yml
+- include_tasks: gnome/shell-settings.yml
 - include_tasks: gnome/terminal.yml
