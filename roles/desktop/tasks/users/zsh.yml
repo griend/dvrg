@@ -1,5 +1,5 @@
 ---
-- name: zsh | .zsh.d
+- name: users zsh | .zsh.d
   file:
     path: "/home/{{ dvrg_user }}/.zsh.d/"
     state: directory
@@ -7,7 +7,7 @@
     group: "{{ dvrg_user }}"
     mode: 0700
 
-- name: zsh | ~/.zshenv
+- name: users zsh | ~/.zshenv
   template:
     src: zsh/zshenv-home.j2
     dest: "/home/{{ dvrg_user }}/.zshenv"
@@ -15,7 +15,7 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: zsh | .zshenv
+- name: users zsh | .zshenv
   template:
     src: zsh/zshenv.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zshenv"
@@ -23,7 +23,7 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: zsh | .zshrc
+- name: users zsh | .zshrc
   template:
     src: zsh/zshrc.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zshrc"
@@ -31,7 +31,7 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: zsh | .zprofile
+- name: users zsh | .zprofile
   template:
     src: zsh/zprofile.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zprofile"
@@ -39,7 +39,7 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: zsh | .zlogin
+- name: users zsh | .zlogin
   template:
     src: zsh/zlogin.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zlogin"
@@ -47,7 +47,7 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: zsh | .zlogout
+- name: users zsh | .zlogout
   template:
     src: zsh/zlogout.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zlogout"
@@ -55,7 +55,7 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: zsh | templates
+- name: users zsh | templates
   template:
     src: "{{ item }}"
     dest: "/home/{{ dvrg_user }}/.zsh.d/{{ item | basename | splitext | first }}"
@@ -63,4 +63,4 @@
     group: "{{ dvrg_user }}"
     mode: 0600
   with_fileglob:
-  - "../templates/zsh/[0-9][0-9]-*.j2"
+    - "../templates/zsh/[0-9][0-9]-*.j2"

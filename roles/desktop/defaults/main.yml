@@ -6,6 +6,10 @@ dvrg_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2vyUoA/rOO7kGN+7rnK1p/Vu5DWV
 dvrg_packages:
   - apt-transport-https
   - git
+  - gnupg2
   - neofetch
   - tmux
   - vim-nox
+
+  - mesa-utils
+  - libgl1-mesa-glx

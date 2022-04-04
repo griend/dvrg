@@ -1,0 +1,40 @@
+---
+- name: users default | create group
+  group:
+    name: "{{ dvrg_user }}"
+    state: present
+
+- name: users default | create user
+  user:
+    name: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    groups:
+      - adm
+      - audio
+      - bluetooth
+      - cdrom
+      - dip
+      - floppy
+      - lpadmin
+      - netdev
+      - plugdev
+      - scanner
+      - sudo
+      - video
+    state: present
+    comment: "{{ dvrg_comment }}"
+    shell: /usr/bin/zsh
+
+- name: users default | authorized key
+  authorized_key:
+    user: "{{ dvrg_user }}"
+    key: "{{ dvrg_ssh_key}}"
+    state: present
+
+- name: users default | sudoerd.d
+  copy:
+    src: sudo/adm
+    dest: /etc/sudoers.d/adm
+    owner: root
+    group: root
+    mode: 0660

@@ -1,5 +1,5 @@
 ---
-- name: software | packages | install
+- name: packages | install
   apt:
     name: "{{ dvrg_packages }}"
   when: ansible_distribution == "Debian"
