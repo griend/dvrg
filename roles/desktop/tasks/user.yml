@@ -36,7 +36,9 @@
 #
 - name: user | install zsh
   apt:
-    name: zsh
+    name:
+      - zsh
+      - zsh-syntax-highlighting
     state: latest
   when: ansible_distribution == "Debian"
 
@@ -49,18 +51,19 @@
   user:
     name: "{{ dvrg_user }}"
     group: "{{ dvrg_user }}"
-    groups: 
-    - adm
-    - sudo
-    - cdrom
-    - floppy 
-    - audio
-    - dip
-    - video
-    - plugdev
-    - netdev
-    - bluetooth
-    - scanner
+    groups:
+      - adm
+      - audio
+      - bluetooth
+      - cdrom
+      - dip
+      - floppy
+      - lpadmin
+      - netdev
+      - plugdev
+      - scanner
+      - sudo
+      - video
     state: present
     comment: "{{ dvrg_comment }}"
     shell: /usr/bin/zsh
@@ -78,4 +81,3 @@
     owner: root
     group: root
     mode: 0660
-

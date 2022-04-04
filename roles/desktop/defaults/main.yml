@@ -2,3 +2,10 @@
 dvrg_user: cees
 dvrg_comment: Cees van de Griend
 dvrg_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2vyUoA/rOO7kGN+7rnK1p/Vu5DWVVWALXsMWDQ+jkk c.vande.griend@gmail.com
+
+dvrg_packages:
+  - apt-transport-https
+  - git
+  - neofetch
+  - tmux
+  - vim-nox
