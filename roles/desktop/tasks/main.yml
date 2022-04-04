@@ -1,4 +1,7 @@
 ---
+- include_tasks: user.yml
+- include_tasks: zsh.yml
+
 - include_tasks: software/google_chrome.yml
 - include_tasks: software/python.yml
 - include_tasks: software/vscode.yml
