@@ -32,7 +32,8 @@
     dest: /etc/systemd/system
     owner: root
     group: root
-    mode: 0660
+    mode: 0664
+  notify: systemd reload
 
 - name: users ansible | install ansible.timer
   copy:
@@ -40,16 +41,19 @@
     dest: /etc/systemd/system
     owner: root
     group: root
-    mode: 0660
+    mode: 0664
+  notify: systemd reload
 
 - name: users ansible | enable ansible.service
   systemd:
     name: ansible.service
-    enabled: yes
+    enabled: no
     state: stopped
+  notify: systemd reload
 
 - name: users ansible | enable ansible.timer
   systemd:
     name: ansible.timer
     enabled: yes
     state: started
+  notify: systemd reload
