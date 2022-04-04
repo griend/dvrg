@@ -1,0 +1,14 @@
+---
+- name: gnome | background | picture none
+  tags: gnome
+  become_user: cees
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'none'"
+
+- name: gnome | background | solid color
+  tags: gnome
+  become_user: cees
+  dconf:
+    key: "/org/gnome/desktop/background/primary-color"
+    value: "'#808080'"

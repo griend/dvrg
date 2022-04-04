@@ -1,0 +1,26 @@
+---
+# [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+# background-color='rgb(0,0,0)'
+# default-size-columns=132
+# default-size-rows=25
+# font='Monospace 10'
+# foreground-color='rgb(170,170,170)'
+# palette=['rgb(0,0,0)', 'rgb(170,0,0)', 'rgb(0,170,0)', 'rgb(170,85,0)', 'rgb(0,0,170)', 'rgb(170,0,170)', 'rgb(0,170,170)', 'rgb(170,170,170)', 'rgb(85,85,85)', 'rgb(255,85,85)', 'rgb(85,255,85)', 'rgb(255,255,85)', 'rgb(85,85,255)', 'rgb(255,85,255)', 'rgb(85,255,255)', 'rgb(255,255,255)']
+# use-system-font=false
+# use-theme-colors=false
+
+- name: gnome | terminal | settings
+  tags: gnome
+  become_user: cees
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/{{ item.key }}"
+    value: "{{ item.value}}"
+  with_items:
+    - { key: background-color, value: "'rgb(0,0,0)'" }
+    - { key: default-size-columns, value: "132" }
+    - { key: default-size-rows, value: "25" }
+    - { key: font, value: "'Monospace 10'" }
+    - { key: foreground-color, value: "'rgb(170,170,170)'" }
+    - { key: palette, value: "\"['rgb(0,0,0)', 'rgb(170,0,0)', 'rgb(0,170,0)', 'rgb(170,85,0)', 'rgb(0,0,170)', 'rgb(170,0,170)', 'rgb(0,170,170)', 'rgb(170,170,170)', 'rgb(85,85,85)', 'rgb(255,85,85)', 'rgb(85,255,85)', 'rgb(255,255,85)', 'rgb(85,85,255)', 'rgb(255,85,255)', 'rgb(85,255,255)', 'rgb(255,255,255)']\"" }
+    - { key: use-system-font, value: "false" }
+    - { key: use-theme-colors, value: "false" }

@@ -1,0 +1,23 @@
+---
+- name: software | vscode | add repository key
+  apt_key:
+    url: "https://packages.microsoft.com/keys/microsoft.asc"
+  when: ansible_distribution == "Debian"
+
+- name: software | vscode | add repository
+  apt_repository:
+    repo: "deb [arch=amd64,arm64,armhf] http://packages.microsoft.com/repos/code stable main"
+    filename: vscode
+  register: vscode_repo
+  when: ansible_distribution == "Debian"
+
+- name: software | vscode | update sources (repo added or changed)
+  apt:
+    update_cache: yes
+  changed_when: False
+  when: vscode_repo.changed
+
+- name: software | vscode | install package
+  apt:
+    name: code
+  when: ansible_distribution == "Debian"
