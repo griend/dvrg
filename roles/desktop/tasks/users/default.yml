@@ -38,3 +38,20 @@
     owner: root
     group: root
     mode: 0660
+
+- name: users default | .gitconfig
+  template:
+    src: users/gitconfig.j2
+    dest: "/home/{{ dvrg_user }}/.gitconfig"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+
+- name: users default | .ssh/config
+  template:
+    force: no
+    src: users/sshconfig.j2
+    dest: "/home/{{ dvrg_user }}/.ssh/config"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
