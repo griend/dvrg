@@ -26,6 +26,9 @@
     group: root
     mode: 0660
 
+#
+# Setup ansible.service and ansible.timer
+#
 - name: users ansible | install ansible.service
   copy:
     src: systemd/ansible.service
@@ -33,7 +36,7 @@
     owner: root
     group: root
     mode: 0664
-  notify: systemd reload
+  register: ansible_service
 
 - name: users ansible | install ansible.timer
   copy:
@@ -42,18 +45,19 @@
     owner: root
     group: root
     mode: 0664
-  notify: systemd reload
+  notify: ansible_timer
 
 - name: users ansible | enable ansible.service
   systemd:
     name: ansible.service
     enabled: no
     state: stopped
-  notify: systemd reload
+    daemon_reload: yes
+  when: ansible_service is succeeded
 
 - name: users ansible | enable ansible.timer
   systemd:
     name: ansible.timer
     enabled: yes
     state: started
-  notify: systemd reload
+  when: ansible_timer is succeeded

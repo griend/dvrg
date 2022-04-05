@@ -10,3 +10,7 @@ Inspired by: https://github.com/LearnLinuxTV/personal_ansible_desktop_configs
 $ sudo ansible-pull --url https://github.com/griend/dvrg.git
 ...
 ```
+
+## Ansible service
+
+A systemd service: `ansible.service` will be installed and this will be triggered by a `ansible.timer`.

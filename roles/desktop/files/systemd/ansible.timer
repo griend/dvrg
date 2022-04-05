@@ -5,7 +5,7 @@ Requires=ansible.service
 [Timer]
 Unit=ansible.service
 OnCalendar=*:00/10
-RandomizedDelaySec=500
+RandomizedDelaySec=60
 
 [Install]
 WantedBy=timers.target
