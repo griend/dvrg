@@ -1,6 +1,0 @@
----
-- name: software | python | install packages
-  apt:
-    name:
-    
-  when: ansible_distribution == "Debian"

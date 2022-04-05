@@ -1,6 +1,6 @@
 ---
 - name: flatpak | install
-  apt:
+  package:
     name: 
     - flatpak
     - gnome-software-plugin-flatpak
