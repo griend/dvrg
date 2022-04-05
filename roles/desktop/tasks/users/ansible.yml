@@ -45,7 +45,7 @@
     owner: root
     group: root
     mode: 0664
-  notify: ansible_timer
+  register: ansible_timer
 
 - name: users ansible | enable ansible.service
   systemd:
@@ -60,4 +60,5 @@
     name: ansible.timer
     enabled: yes
     state: started
+    daemon_reload: yes
   when: ansible_timer is succeeded
