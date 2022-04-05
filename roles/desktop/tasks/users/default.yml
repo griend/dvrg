@@ -19,6 +19,7 @@
       - netdev
       - plugdev
       - scanner
+      - ssh
       - sudo
       - video
     state: present

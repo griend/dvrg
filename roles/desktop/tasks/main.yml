@@ -5,11 +5,14 @@
 - include_tasks: users/default.yml
 - include_tasks: users/zsh.yml
 
+- include_tasks: gnome/background.yml
+- include_tasks: gnome/shell-settings.yml
+- include_tasks: gnome/terminal.yml
+
+- include_tasks: services/ssh.yml
+
 - include_tasks: software/azure-cli.yml
 - include_tasks: software/flatpak.yml
 - include_tasks: software/google_chrome.yml
 - include_tasks: software/vscode.yml
 
-- include_tasks: gnome/background.yml
-- include_tasks: gnome/shell-settings.yml
-- include_tasks: gnome/terminal.yml
