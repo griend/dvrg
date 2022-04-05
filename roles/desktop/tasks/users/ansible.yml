@@ -27,6 +27,56 @@
     mode: 0660
 
 #
+# Import public GPG key
+#
+- name: users ansible | check public GPG key
+  become: yes
+  become_user: ansible
+  command: "gpg2 --list-public-keys {{ dvrg_gpg_key }}"
+  register: gpg_key_exist
+  ignore_errors: true
+
+- name: users ansible | copy public GPG key
+  copy:
+    src: gpg/c_vande_griend.asc
+    dest: /tmp/c_vande_griend.asc
+    owner: ansible
+    group: ansible
+    mode: 0600
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | import public GPG key
+  become: yes
+  become_user: ansible
+  command: gpg2 --import /tmp/c_vande_griend.asc
+  register: gpg_key_import
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | create GPG trust
+  become: yes
+  become_user: ansible
+  shell: "gpg2 --export-ownertrust && echo {{ dvrg_gpg_key }}:6: > /tmp/trust.asc"
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | import GPG trust
+  become: yes
+  become_user: ansible
+  command: gpg2 --import-ownertrust /tmp/trust.asc
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | delete public GPG key
+  file:
+    path: /tmp/c_vande_griend.asc
+    state: absent
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | delete GPG trust
+  file:
+    path: /tmp/trust.asc
+    state: absent
+  when: gpg_key_exist.rc != 0
+
+#
 # Setup ansible.service and ansible.timer
 #
 - name: users ansible | install ansible.service
@@ -53,4 +103,3 @@
     state: started
     daemon_reload: yes
   when: ansible_timer is succeeded
-  

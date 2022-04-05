@@ -6,7 +6,7 @@ Wants=ansible.timer
 Type=simple
 User=ansible
 Group=ansible
-ExecStart=-/usr/bin/ansible-pull --only-if-changed --url https://github.com/griend/dvrg.git --directory /home/ansible/dvrg
+ExecStart=-/usr/bin/ansible-pull --only-if-changed --url https://github.com/griend/dvrg.git --directory /home/ansible/dvrg --verify-commit
 
 [Install]
 WantedBy=multi-user.target

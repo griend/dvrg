@@ -2,6 +2,7 @@
 dvrg_user: cees
 dvrg_comment: Cees van de Griend
 dvrg_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2vyUoA/rOO7kGN+7rnK1p/Vu5DWVVWALXsMWDQ+jkk c.vande.griend@gmail.com
+dvrg_gpg_key: 1ABE9EC34D137104D589BFECB15515C491917E67
 
 dvrg_packages:
   - apt-transport-https
