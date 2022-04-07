@@ -12,11 +12,12 @@
     state: present
     shell: /bin/bash
 
+# SSH is disabled for user ansible
 - name: users ansible | authorized key
   authorized_key:
     user: ansible
     key: "{{ dvrg_ssh_key}}"
-    state: present
+    state: absent
 
 - name: users ansible | sudoerd.d
   copy:
@@ -25,6 +26,15 @@
     owner: root
     group: root
     mode: 0660
+
+- name: users ansible | .dvrg-ansible-vault
+  copy:
+    content: "{{ dvrg_vault_password }}"
+    dest: /home/ansible/.dvrg-ansible-vault
+    owner: ansible
+    group: ansible
+    mode: 0600
+    force: no
 
 #
 # Import public GPG key
@@ -38,8 +48,8 @@
 
 - name: users ansible | copy public GPG key
   copy:
-    src: gpg/c_vande_griend.asc
-    dest: /tmp/c_vande_griend.asc
+    src: gpg/public.asc
+    dest: /tmp/public.asc
     owner: ansible
     group: ansible
     mode: 0600
@@ -48,7 +58,7 @@
 - name: users ansible | import public GPG key
   become: yes
   become_user: ansible
-  command: gpg2 --import /tmp/c_vande_griend.asc
+  command: gpg2 --import /tmp/public.asc
   register: gpg_key_import
   when: gpg_key_exist.rc != 0
 
@@ -66,7 +76,7 @@
 
 - name: users ansible | delete public GPG key
   file:
-    path: /tmp/c_vande_griend.asc
+    path: /tmp/public.asc
     state: absent
   when: gpg_key_exist.rc != 0
 
