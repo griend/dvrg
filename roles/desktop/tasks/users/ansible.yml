@@ -44,8 +44,9 @@
   become_user: ansible
   command: "gpg2 --list-public-keys {{ dvrg_gpg_key }}"
   register: gpg_key_exist
+  changed_when: false
   ignore_errors: true
-
+  
 - name: users ansible | copy public GPG key
   copy:
     src: secrets/gpg/c.vande.griend@gmail.com-public.asc

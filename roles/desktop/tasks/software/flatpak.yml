@@ -4,7 +4,6 @@
     name: 
     - flatpak
     - gnome-software-plugin-flatpak
-    state: latest
 
 - name: flatpak | add flathub repository
   flatpak_remote:

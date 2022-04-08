@@ -73,6 +73,7 @@
   become_user: "{{ dvrg_user }}"
   command: "gpg2 --list-public-keys {{ dvrg_gpg_key }}"
   register: gpg_public_key_exist
+  changed_when: false
   ignore_errors: true
 
 - name: users default | copy public GPG key

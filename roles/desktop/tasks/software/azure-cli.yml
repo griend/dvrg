@@ -2,4 +2,3 @@
 - name: azure-cli | install
   pip:
     name: azure-cli
-    state: latest

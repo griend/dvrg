@@ -7,7 +7,8 @@ Inspired by: https://github.com/LearnLinuxTV/personal_ansible_desktop_configs
 ## Usage
 
 ```shell
-$ sudo ansible-pull --url https://github.com/griend/dvrg.git [-e "dvrg_user=cvdg"]
+$ sudo ansible-pull --url https://github.com/griend/dvrg.git [-e "dvrg_user=cvdg"] \
+    --vault-password='<PASSWORD>'
 ...
 ```
 
