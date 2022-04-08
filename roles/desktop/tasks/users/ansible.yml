@@ -29,7 +29,7 @@
 
 - name: users ansible | .dvrg-ansible-vault
   copy:
-    content: "{{ dvrg_vault_password }}"
+    content: "{{ secret_dvrg_vault_password }}"
     dest: /home/ansible/.dvrg-ansible-vault
     owner: ansible
     group: ansible
@@ -48,7 +48,7 @@
 
 - name: users ansible | copy public GPG key
   copy:
-    src: gpg/public.asc
+    src: secrets/gpg/c.vande.griend@gmail.com-public.asc
     dest: /tmp/public.asc
     owner: ansible
     group: ansible

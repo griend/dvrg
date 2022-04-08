@@ -42,7 +42,7 @@
 
 - name: users default | .ssh/id_ed25519
   copy:
-    src: ssh/id_ed25519
+    src: secrets/ssh/c.vande.griend@gmail.com-id_ed25519
     dest: "/home/{{ dvrg_user }}/.ssh/id_ed25519"
     owner: "{{ dvrg_user }}"
     group: "{{ dvrg_user }}"
@@ -77,7 +77,7 @@
 
 - name: users default | copy public GPG key
   copy:
-    src: gpg/public.asc
+    src: secrets/gpg/c.vande.griend@gmail.com-public.asc
     dest: /tmp/public.asc
     owner: "{{ dvrg_user }}"
     group: "{{ dvrg_user }}"
@@ -92,48 +92,22 @@
   when: gpg_public_key_exist.rc != 0
 
 #
-# Import secret GPG key
-#
-- name: users default | check secret GPG key
-  become: yes
-  become_user: "{{ dvrg_user }}"
-  command: "gpg2 --list-secret-keys {{ dvrg_gpg_key }}"
-  register: gpg_secret_key_exist
-  ignore_errors: true
-
-- name: users default | copy public GPG key
-  copy:
-    src: gpg/secret.asc
-    dest: /tmp/secret.asc
-    owner: "{{ dvrg_user }}"
-    group: "{{ dvrg_user }}"
-    mode: 0600
-  when: gpg_secret_key_exist.rc != 0
-
-- name: users default | import secret GPG key
-  become: yes
-  become_user: "{{ dvrg_user }}"
-  command: gpg2 --import /tmp/public.asc
-  register: gpg_secret_key_import
-  when: gpg_secret_key_exist.rc != 0
-
-#
 # Import GPG trust
 #
 - name: users default | create GPG trust
   become: yes
   become_user: "{{ dvrg_user }}"
   shell: "gpg2 --export-ownertrust && echo {{ dvrg_gpg_key }}:6: > /tmp/trust.asc"
-  when: gpg_public_key_exist.rc != 0 or gpg_secret_key_exist.rc != 0
+  when: gpg_public_key_exist.rc != 0
 
 - name: users default | import GPG trust
   become: yes
   become_user: "{{ dvrg_user }}"
   command: gpg2 --import-ownertrust /tmp/trust.asc
-  when: gpg_public_key_exist.rc != 0 or gpg_secret_key_exist.rc != 0
+  when: gpg_public_key_exist.rc != 0
 
 #
-#Cleanup GPG
+# Cleanup GPG
 #
 - name: users default | delete public GPG key
   file:
@@ -141,14 +115,20 @@
     state: absent
   when: gpg_public_key_exist.rc != 0
 
-- name: users default | delete secret GPG key
-  file:
-    path: /tmp/secret.asc
-    state: absent
-  when: gpg_secret_key_exist.rc != 0
-
 - name: users default | delete GPG trust
   file:
     path: /tmp/trust.asc
     state: absent
-  when: gpg_public_key_exist.rc != 0 or gpg_secret_key_exist.rc != 0
+  when: gpg_public_key_exist.rc != 0
+
+#
+# Copy secrets
+#
+- name: users default | copy secrets
+  copy:
+    src: secrets
+    dest: "/home/{{ dvrg_user }}/Documents"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+    directory_mode: 0700
