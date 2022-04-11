@@ -42,7 +42,7 @@
 
 - name: users default | .ssh/id_ed25519
   copy:
-    src: secrets/ssh/c.vande.griend@gmail.com-id_ed25519
+    src: "secrets/ssh/{{ dvrg_email }}-id_ed25519"
     dest: "/home/{{ dvrg_user }}/.ssh/id_ed25519"
     owner: "{{ dvrg_user }}"
     group: "{{ dvrg_user }}"
@@ -78,7 +78,7 @@
 
 - name: users default | copy public GPG key
   copy:
-    src: secrets/gpg/c.vande.griend@gmail.com-public.asc
+    src: "secrets/gpg/{{ dvrg_email }}-public.asc"
     dest: /tmp/public.asc
     owner: "{{ dvrg_user }}"
     group: "{{ dvrg_user }}"

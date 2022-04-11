@@ -49,7 +49,7 @@
   
 - name: users ansible | copy public GPG key
   copy:
-    src: secrets/gpg/c.vande.griend@gmail.com-public.asc
+    src: "secrets/gpg/{{ dvrg_email }}-public.asc"
     dest: /tmp/public.asc
     owner: ansible
     group: ansible
@@ -111,6 +111,5 @@
   systemd:
     name: ansible.timer
     enabled: yes
-    state: started
     daemon_reload: yes
   when: ansible_timer is succeeded

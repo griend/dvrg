@@ -1,9 +1,9 @@
 ---
 dvrg_user: cees
 dvrg_comment: Cees van de Griend
-dvrg_email: c.vande.griend@gmail.com
-dvrg_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE2vyUoA/rOO7kGN+7rnK1p/Vu5DWVVWALXsMWDQ+jkk c.vande.griend@gmail.com
-dvrg_gpg_key: 1ABE9EC34D137104D589BFECB15515C491917E67
+dvrg_email: cees@griend.eu
+dvrg_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPvNnUk4qfyrulUyB5e2U2NSBKD/DR1NILlfD5a3X2tq cees@griend.eu
+dvrg_gpg_key: 0AEFA422AC6CAA356728A4988C793245B8F69731
 
 dvrg_packages:
   - apt-transport-https
@@ -23,3 +23,6 @@ dvrg_packages:
   - python3-psutil
   - python3-venv
   - python3-wheel
+
+  - zsh
+  - zsh-syntax-highlighting
