@@ -21,14 +21,6 @@
     key: "/org/gnome/desktop/sound/event-sounds"
     value: "false"
 
-- name: gnome | shell settings | disable hidpi-daemon
-  tags: gnome
-  become_user: "{{ dvrg_user }}"
-  dconf:
-    key: "/com/system76/hidpi/enable"
-    value: "false"
-  when: ansible_distribution in ["Pop!_OS", "Ubuntu"]
-
 # Disable screen blanking
 - name: gnome | shell settings | idle-delay
   tags: gnome
@@ -109,3 +101,18 @@
   dconf:
     key: "/org/gnome/gnome-screenshot/auto-save-directory"
     value: "'/home/{{ dvrg_user }}'"
+
+# Automatic suspend off
+- name: gnome | shell settings | set sleep inactive ac type
+  tags: gnome
+  become_user: "{{ dvrg_user }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
+    value: "'nothing'"
+
+- name: gnome | shell settings | set sleep inactive battery type 
+  tags: gnome
+  become_user: "{{ dvrg_user }}"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-type"
+    value: "'nothing'"
