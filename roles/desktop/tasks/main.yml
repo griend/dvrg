@@ -13,6 +13,7 @@
 
 - include_tasks: software/azure-cli.yml
 - include_tasks: software/flatpak.yml
+- include_tasks: software/github_cli.yml
 - include_tasks: software/google_chrome.yml
 - include_tasks: software/terraform.yml
 - include_tasks: software/vscode.yml

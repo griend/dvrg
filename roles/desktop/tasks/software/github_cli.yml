@@ -1,0 +1,23 @@
+---
+- name: software | github-cli | add repository key
+  apt_key:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+  when: ansible_distribution == "Debian"
+
+- name: software | github-cli | add repository
+  apt_repository:
+    repo: deb [arch=amd64] https://cli.github.com/packages stable main
+    filename: github-cli
+  register:  github_cli_repo
+  when: ansible_distribution == "Debian"
+
+- name: software | github-cli | update sources (repo added or changed)
+  apt:
+    update_cache: yes
+  changed_when: False
+  when: github_cli_repo.changed
+
+- name: software | github-cli | install package
+  apt:
+    name: gh
+  when: ansible_distribution == "Debian"
