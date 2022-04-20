@@ -40,14 +40,6 @@
     group: root
     mode: 0660
 
-- name: users default | .ssh/id_ed25519
-  copy:
-    src: "secrets/ssh/{{ dvrg_email }}-id_ed25519"
-    dest: "/home/{{ dvrg_user }}/.ssh/id_ed25519"
-    owner: "{{ dvrg_user }}"
-    group: "{{ dvrg_user }}"
-    mode: 0600
-
 - name: users default | .gitconfig
   template:
     src: users/gitconfig.j2
@@ -121,15 +113,3 @@
     path: /tmp/trust.asc
     state: absent
   when: gpg_public_key_exist.rc != 0
-
-#
-# Copy secrets
-#
-- name: users default | copy secrets
-  copy:
-    src: secrets
-    dest: "/home/{{ dvrg_user }}/Documents"
-    owner: "{{ dvrg_user }}"
-    group: "{{ dvrg_user }}"
-    mode: 0600
-    directory_mode: 0700

@@ -27,14 +27,11 @@
     group: root
     mode: 0660
 
+# Remove old password file
 - name: users ansible | .dvrg-ansible-vault
-  copy:
-    content: "{{ secret_dvrg_vault_password }}"
-    dest: /home/ansible/.dvrg-ansible-vault
-    owner: ansible
-    group: ansible
-    mode: 0600
-    force: no
+  file:
+    path: /home/ansible/.dvrg-ansible-vault
+    state: absent
 
 #
 # Import public GPG key
