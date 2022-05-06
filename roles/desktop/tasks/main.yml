@@ -1,19 +1,31 @@
 ---
 - include_tasks: packages.yml
 
+
 - include_tasks: users/ansible.yml
 - include_tasks: users/default.yml
 - include_tasks: users/zsh.yml
 
-- include_tasks: gnome/background.yml
-- include_tasks: gnome/shell-settings.yml
-- include_tasks: gnome/terminal.yml
+
+- include_tasks: gnome/main.yml
+  when: ansible_architecture != "aarch64"
+
 
 - include_tasks: services/ssh.yml
 
+
 - include_tasks: software/azure-cli.yml
+
 - include_tasks: software/flatpak.yml
+  when: ansible_architecture != "aarch64"
+
 - include_tasks: software/github_cli.yml
+  when: ansible_architecture != "aarch64"
+
 - include_tasks: software/google_chrome.yml
+  when: ansible_architecture != "aarch64"
+
 - include_tasks: software/terraform.yml
+  when: ansible_architecture != "aarch64"
+
 - include_tasks: software/vscode.yml

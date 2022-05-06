@@ -3,7 +3,7 @@
   package:
     name: 
     - flatpak
-    - gnome-software-plugin-flatpak
+  # - gnome-software-plugin-flatpak
 
 - name: flatpak | add flathub repository
   flatpak_remote:
