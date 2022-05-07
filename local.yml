@@ -16,6 +16,7 @@
 
   # Main
   roles:
+    - server
     - desktop
 
   # Clean/Purge repository
