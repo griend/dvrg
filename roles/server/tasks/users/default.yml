@@ -11,10 +11,9 @@
     groups:
       - adm
       - audio
-      - bluetooth
       - cdrom
-      - dip
-      - floppy
+      - dialout
+      - games
       - lpadmin
       - netdev
       - plugdev
