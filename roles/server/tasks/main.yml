@@ -1,5 +1,6 @@
 ---
 - include_tasks: packages.yml
+- include_tasks: locale.yml
 
 - include_tasks: users/ansible.yml
 - include_tasks: users/default.yml

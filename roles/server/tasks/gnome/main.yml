@@ -1,4 +1,0 @@
----
-- include_tasks: background.yml
-- include_tasks: software/flatpak.yml
-- include_tasks: software/github_cli.yml
