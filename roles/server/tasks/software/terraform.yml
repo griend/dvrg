@@ -1,0 +1,23 @@
+---
+- name: software | terraform | add repository key
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+  when: ansible_distribution == "Debian"
+
+- name: software | terraform | add repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    filename: terraform
+  register: terraform_repo
+  when: ansible_distribution == "Debian"
+
+- name: software | terraform | update sources (repo added or changed)
+  apt:
+    update_cache: yes
+  changed_when: False
+  when: terraform_repo.changed
+
+- name: software | terraform | install package
+  apt:
+    name: terraform
+  when: ansible_distribution == "Debian"

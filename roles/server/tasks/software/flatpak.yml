@@ -1,0 +1,24 @@
+---
+- name: flatpak | install
+  package:
+    name: 
+    - flatpak
+  # - gnome-software-plugin-flatpak
+
+- name: flatpak | add flathub repository
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  
+- name: flatpak | bitwarden
+  flatpak:
+    name: com.bitwarden.desktop
+    state: present
+    remote: flathub
+
+- name: flatpak | slack
+  flatpak:
+    name: com.slack.Slack
+    state: present
+    remote: flathub

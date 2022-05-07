@@ -1,0 +1,112 @@
+---
+- name: users ansible | create group
+  group:
+    name: ansible
+    system: yes
+    state: present
+
+- name: users ansible | create user
+  user:
+    name: ansible
+    system: yes
+    state: present
+    shell: /bin/bash
+
+# SSH is disabled for user ansible
+- name: users ansible | authorized key
+  authorized_key:
+    user: ansible
+    key: "{{ dvrg_ssh_key}}"
+    state: absent
+
+- name: users ansible | sudoerd.d
+  copy:
+    src: sudo/ansible
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: 0660
+
+# Remove old password file
+- name: users ansible | .dvrg-ansible-vault
+  file:
+    path: /home/ansible/.dvrg-ansible-vault
+    state: absent
+
+#
+# Import public GPG key
+#
+- name: users ansible | check public GPG key
+  become: yes
+  become_user: ansible
+  command: "gpg2 --list-public-keys {{ dvrg_gpg_key }}"
+  register: gpg_key_exist
+  changed_when: false
+  ignore_errors: true
+  
+- name: users ansible | copy public GPG key
+  copy:
+    src: "secrets/gpg/{{ dvrg_email }}-public.asc"
+    dest: /tmp/public.asc
+    owner: ansible
+    group: ansible
+    mode: 0600
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | import public GPG key
+  become: yes
+  become_user: ansible
+  command: gpg2 --import /tmp/public.asc
+  register: gpg_key_import
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | create GPG trust
+  become: yes
+  become_user: ansible
+  shell: "gpg2 --export-ownertrust && echo {{ dvrg_gpg_key }}:6: > /tmp/trust.asc"
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | import GPG trust
+  become: yes
+  become_user: ansible
+  command: gpg2 --import-ownertrust /tmp/trust.asc
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | delete public GPG key
+  file:
+    path: /tmp/public.asc
+    state: absent
+  when: gpg_key_exist.rc != 0
+
+- name: users ansible | delete GPG trust
+  file:
+    path: /tmp/trust.asc
+    state: absent
+  when: gpg_key_exist.rc != 0
+
+#
+# Setup ansible.service and ansible.timer
+#
+- name: users ansible | install ansible.service
+  copy:
+    src: systemd/ansible.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: 0664
+
+- name: users ansible | install ansible.timer
+  copy:
+    src: systemd/ansible.timer
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: 0664
+  register: ansible_timer
+
+- name: users ansible | enable ansible.timer
+  systemd:
+    name: ansible.timer
+    enabled: yes
+    daemon_reload: yes
+  when: ansible_timer is succeeded

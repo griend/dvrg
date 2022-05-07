@@ -1,0 +1,21 @@
+---
+- name: gnome | background | picture none
+  tags: gnome
+  become_user: "{{ dvrg_user }}"
+  dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'none'"
+
+- name: gnome | background | picture-uri
+  tags: gnome
+  become_user: "{{ dvrg_user }}"
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'none'"
+
+- name: gnome | background | solid color lightgray
+  tags: gnome
+  become_user: "{{ dvrg_user }}"
+  dconf:
+    key: "/org/gnome/desktop/background/primary-color"
+    value: "'#808080'"

@@ -1,0 +1,11 @@
+[Unit]
+Description=Ansible-pull timer
+Requires=ansible.service
+
+[Timer]
+Unit=ansible.service
+OnCalendar=*:00/10
+RandomizedDelaySec=120
+
+[Install]
+WantedBy=timers.target
