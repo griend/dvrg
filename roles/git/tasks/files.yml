@@ -1,0 +1,9 @@
+---
+- name: ~/.gitconfig
+  tags: git
+  template:
+    src: gitconfig.j2
+    dest: "/home/{{ dvrg_user }}/.gitconfig"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0600

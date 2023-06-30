@@ -1,0 +1,5 @@
+---
+- name: packages | install
+  tags: git
+  package:
+    name: "{{ packages }}"

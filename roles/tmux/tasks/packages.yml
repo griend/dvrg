@@ -1,0 +1,5 @@
+---
+- name: packages | install
+  tags: tmux
+  package:
+    name: "{{ packages }}"

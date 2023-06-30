@@ -6,4 +6,7 @@
 
   roles:
     - desktop
+    - git
+    - local-bin
+    - tmux
     - zsh
