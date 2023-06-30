@@ -1,0 +1,7 @@
+{{ ansible_managed | comment }}
+
+export ZDOTDIR=/home/{{ dvrg_user }}/.zsh.d
+
+if [ -f ${ZDOTDIR}/.zshenv ] ; then
+  source ${ZDOTDIR}/.zshenv
+fi

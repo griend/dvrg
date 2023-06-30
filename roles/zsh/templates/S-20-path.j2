@@ -3,12 +3,27 @@
 # Only unique paths
 typeset -U path
 
+# clear path
+unset path
+
 if [ -d ${HOME}/.local/bin ] ; then
   path+=${HOME}/.local/bin
 fi
 
+# Do we need this?
 if [ -d ${HOME}/bin ] ; then
   path+=${HOME}/bin
+fi
+
+if [ -d /usr/local/bin ] ; then
+  path+=/usr/local/bin
+fi
+
+path+=/usr/bin
+path+=/bin
+
+if [ -d /usr/games ]
+  path+=/usr/games
 fi
 
 export path

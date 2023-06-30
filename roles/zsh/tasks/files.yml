@@ -1,13 +1,13 @@
 ---
 - name: ~/.zshenv
   template:
-    src: zshenv.j2
+    src: zshenv-home.j2
     dest: "/home/{{ dvrg_user }}/.zshenv"
     owner: "{{ dvrg_user }}"
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: ~/.zlogin
+- name: ~/.zsh.d/.zlogin
   template:
     src: zlogin.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zlogin"
@@ -15,7 +15,7 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: ~/.zlogout
+- name: ~/.zsh.d/.zlogout
   template:
     src: zlogout.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zlogout"
@@ -23,7 +23,7 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: ~/.zprofile
+- name: ~/.zsh.d/.zprofile
   template:
     src: zprofile.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zprofile"
@@ -31,7 +31,15 @@
     group: "{{ dvrg_user }}"
     mode: 0600
 
-- name: ~/.zshrc
+- name: ~/.zsh.d/.zshenv
+  template:
+    src: zshenv.j2
+    dest: "/home/{{ dvrg_user }}/.zsh.d/.zshenv"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+
+- name: ~/.zsh.d/.zshrc
   template:
     src: zshrc.j2
     dest: "/home/{{ dvrg_user }}/.zsh.d/.zshrc"
