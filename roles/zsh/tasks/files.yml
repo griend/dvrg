@@ -47,5 +47,5 @@
     group: "{{ dvrg_user }}"
     mode: 0600
   with_fileglob:
-    - "../templates/[0-9][0-9]-*.j2"
+    - "../templates/[SK]-[0-9][0-9]-*.j2"
   

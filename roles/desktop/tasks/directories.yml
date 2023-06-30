@@ -53,6 +53,15 @@
     group: "{{ dvrg_group }}"
     mode: 0700
 
+- name: ~/Projects
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Projects"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
 - name: ~/Public
   tags: desktop
   file:

@@ -1,0 +1,5 @@
+---
+- name: timezone Europe/Amsterdam
+  community.general.timezone:
+    name: Europe/Amsterdam
+    hwclock: UTC

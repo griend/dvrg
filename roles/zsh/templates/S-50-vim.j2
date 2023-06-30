@@ -1,0 +1,7 @@
+{{ ansible_managed | comment }}
+
+{% if ansible_os_family == "Debian" %}
+if [ -x /usr/bin/vim ] ; then
+    export EDITOR=/usr/bin/vim
+fi
+{% endif %}
