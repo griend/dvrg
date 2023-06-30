@@ -1,0 +1,117 @@
+---
+- name: ~
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0755
+
+- name: ~/Desktop
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Desktop"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/Documents
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Documents"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/Downloads
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Downloads"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/Music
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Music"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/Pictures
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Pictures"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/Public
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Public"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0755
+
+- name: ~/Templates
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Templates"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/Videos
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/Videos"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/.cache
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/.cache"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/.config
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/.config"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/.local
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/.local"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700
+
+- name: ~/.local/bin
+  tags: desktop
+  file:
+    path: "/home/{{ dvrg_user }}/.local/bin"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700

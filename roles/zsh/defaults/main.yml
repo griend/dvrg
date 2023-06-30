@@ -1,0 +1,7 @@
+---
+packages:
+  - zsh
+  - zsh-syntax-highlighting
+
+  - neofetch
+  
