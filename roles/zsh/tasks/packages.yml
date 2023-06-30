@@ -1,5 +1,5 @@
 ---
 - name: packages | install
-  tags: desktop
+  tags: zsh
   package:
     name: "{{ packages }}"

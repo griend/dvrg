@@ -1,0 +1,51 @@
+---
+- name: ~/.zshenv
+  template:
+    src: zshenv.j2
+    dest: "/home/{{ dvrg_user }}/.zshenv"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+
+- name: ~/.zlogin
+  template:
+    src: zlogin.j2
+    dest: "/home/{{ dvrg_user }}/.zsh.d/.zlogin"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+
+- name: ~/.zlogout
+  template:
+    src: zlogout.j2
+    dest: "/home/{{ dvrg_user }}/.zsh.d/.zlogout"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+
+- name: ~/.zprofile
+  template:
+    src: zprofile.j2
+    dest: "/home/{{ dvrg_user }}/.zsh.d/.zprofile"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+
+- name: ~/.zshrc
+  template:
+    src: zshrc.j2
+    dest: "/home/{{ dvrg_user }}/.zsh.d/.zshrc"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+
+- name: templates
+  template:
+    src: "{{ item }}"
+    dest: "/home/{{ dvrg_user }}/.zsh.d/{{ item | basename | splitext | first }}"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0600
+  with_fileglob:
+    - "../templates/[SK]-[0-9][0-9]-*.j2"
+  

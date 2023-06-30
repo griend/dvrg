@@ -1,0 +1,10 @@
+{{ ansible_managed | comment }}
+
+for F in ${ZDOTDIR}/K-[0123456789][0123456789]-* ; do
+  if [ ${ZSH_DEBUG=0} -gt 0 ] ; then
+	echo "Source: ${F}"
+	source ${F}
+  else
+	source ${F}
+  fi
+done

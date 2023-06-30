@@ -1,4 +1,0 @@
----
-- include_tasks: background.yml
-- include_tasks: shell-settings.yml
-- include_tasks: terminal.yml

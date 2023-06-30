@@ -1,0 +1,11 @@
+{{ ansible_managed | comment }}
+
+{% if ansible_os_family == "Debian" %}
+if [ -x /usr/bin/neofetch ] ; then
+    /usr/bin/neofetch
+fi
+{% elif ansible_os_family == "Darwin" %}
+if [ -x /usr/local/bin/neofetch ] ; then
+    /usr/local/bin/neofetch
+fi
+{% endif %}

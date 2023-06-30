@@ -1,9 +1,0 @@
----
-- name: services ssh | /etc/ssh/sshd_config
-  template:
-    src: services/sshd_config.j2
-    dest: "/etc/ssh/sshd_config"
-    owner: root
-    group: root
-    mode: 0660
-  notify: sshd restart

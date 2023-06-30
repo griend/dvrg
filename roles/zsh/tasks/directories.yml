@@ -1,0 +1,9 @@
+---
+- name: ~/.zsh.d
+  tags: zsh
+  file:
+    path: "/home/{{ dvrg_user }}/.zsh.d"
+    state: directory
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_group }}"
+    mode: 0700

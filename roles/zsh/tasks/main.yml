@@ -1,0 +1,10 @@
+---
+- include_tasks: packages.yml
+- include_tasks: directories.yml
+- include_tasks: files.yml
+
+- name: set user shell
+  tags: zsh
+  user:
+    name: "{{ dvrg_user }}"
+    shell: /usr/bin/zsh

@@ -1,24 +1,5 @@
 ---
 - include_tasks: packages.yml
-  when: role_desktop == True
-
-- include_tasks: gnome/main.yml
-  when: role_desktop == True and ansible_architecture != "aarch64"
-
-- include_tasks: software/azure-cli.yml
-  when: role_desktop == True
-
-- include_tasks: software/flatpak.yml
-  when: role_desktop == True and ansible_architecture != "aarch64"
-
-- include_tasks: software/github_cli.yml
-  when: role_desktop == True and ansible_architecture != "aarch64"
-
-- include_tasks: software/google_chrome.yml
-  when: role_desktop == True and ansible_architecture != "aarch64"
-
-- include_tasks: software/terraform.yml
-  when: role_desktop == True and ansible_architecture != "aarch64"
-
-- include_tasks: software/vscode.yml
-  when: role_desktop == True
+- include_tasks: directories.yml
+- include_tasks: locale.yml
+- include_tasks: timezone.yml

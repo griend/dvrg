@@ -1,10 +1,21 @@
 ---
-dvrg_user: cees
-dvrg_comment: Cees van de Griend
-dvrg_email: cees@griend.eu
-dvrg_ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPvNnUk4qfyrulUyB5e2U2NSBKD/DR1NILlfD5a3X2tq cees@griend.eu
-dvrg_gpg_key: 0AEFA422AC6CAA356728A4988C793245B8F69731
+packages:
+  - apt-transport-https
+  - curl
+  - git
+  - gnupg2
+  - htop
+  - neofetch
+  - tmux
+  - vim-nox
 
-dvrg_packages:
+  - python3
+  - python3-pip
+  - python3-psutil
+  - python3-venv
+  - python3-wheel
+
+  - task-gnome-desktop
+
   - mesa-utils
   - libgl1-mesa-glx

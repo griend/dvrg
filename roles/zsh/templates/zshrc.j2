@@ -1,0 +1,26 @@
+{{ ansible_managed | comment }}
+
+#
+# Order login shell
+# 1: ~/.zshenv
+# 2: ~/.zsh.d/.zprofile
+# 3: ~/.zsh.d/.zshrc
+# 4: ~/.zsh.d/.zlogin
+# ...
+# 5: ~/.zsh.d/.zlogout
+#
+# Order secondairy shell:
+# 1: ~/.zsh.d/.zshenv
+# 2: ~/.zsh.d/.zshrc
+#
+
+ZSH_DEBUG=${ZSH_DEBUG:=0}
+
+for F in ${ZDOTDIR}/S-[0123456789][0123456789]-* ; do
+  if [ ${ZSH_DEBUG=0} -gt 0 ] ; then
+	echo "Source: ${F}"
+	source ${F}
+  else
+	source ${F}
+  fi
+done
