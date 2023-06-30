@@ -1,0 +1,9 @@
+#!/usr/bin/zsh
+
+{{ ansible_managed | comment }}
+
+set -ex
+
+if [ -x /usr/bin/ansible-pull ] ; then
+    /usr/bin/ansible-pull --ask-become-pass --url https://github.com/griend/dvrg.git
+fi

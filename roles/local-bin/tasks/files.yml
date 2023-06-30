@@ -1,0 +1,11 @@
+---
+- name: templates
+  template:
+    src: "{{ item }}"
+    dest: "/home/{{ dvrg_user }}/.local/bin/{{ item | basename | splitext | first }}"
+    owner: "{{ dvrg_user }}"
+    group: "{{ dvrg_user }}"
+    mode: 0700
+  with_fileglob:
+    - "../templates/*.j2"
+  
